@@ -1,10 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
+import Route from 'react';
+import Link from 'react';
+
+import Product from './Products/Product';
+import Navigation from './Header/Navigation';
+import UserList from './Users/UserList';
+import Routes from './Routes';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div >
+      <header>
+        <Navigation />
+      </header>
+
+      <UserList />
+
+      
+
+      {/* <Link to="/insert/your/path/here" className="btn btn-primary">hello</Link> */}
+
+
+
+      {/* <Product /> */}
+
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,7 +40,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
     </div>
   );
 }

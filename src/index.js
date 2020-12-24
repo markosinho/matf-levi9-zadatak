@@ -4,10 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCheckSquare, faCoffee, faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faCheckSquare, faCoffee, faUser, faUsers);
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />,
+  // <React.StrictMode>
+  //   <App />
+  //   <Router>
+  //       <div className="App">
+  //           <Navigation />
+  //           <Routes />
+  //       </div>
+  //   </Router>
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 

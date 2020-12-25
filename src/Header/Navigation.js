@@ -1,11 +1,10 @@
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import FormControl from 'react-bootstrap/FormControl';
+// import Form from 'react-bootstrap/Form';
+// import Button from 'react-bootstrap/Button';
+// import FormControl from 'react-bootstrap/FormControl';
 
-
-export default () => {
+const CustomNavigation = () => {
     return <div className="container">
         <Navbar bg="light" expand="lg">
             <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
@@ -13,7 +12,8 @@ export default () => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#link">Link</Nav.Link>
+                    <Nav.Link href="/products">Products</Nav.Link>
+                    <Nav.Link href="/users">Users</Nav.Link>
                     {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -30,3 +30,5 @@ export default () => {
         </Navbar>
     </div>;
 }
+
+export default CustomNavigation;

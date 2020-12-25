@@ -51,8 +51,7 @@ class Product extends React.Component {
             <hr />
             <CreateForm />
             <hr />
-
-            <a href="#" onClick={this.handleCurrentTimeClick}>Refresh current time</a>
+            
             <span> {this.state.currentTime} </span>
 
             <div className="d-flex flex-row flex-wrap justify-content-between">

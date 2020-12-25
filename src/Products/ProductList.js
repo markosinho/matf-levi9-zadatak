@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import User from '../Users/User';
-import CreateForm from './CreateForm';
+// import User from '../Users/User';
+// import CreateForm from './CreateForm';
+import { Link } from 'react-router-dom';
 
 class ProductList extends React.Component {
     constructor(props) {
@@ -48,9 +49,9 @@ class ProductList extends React.Component {
     render() {
         return <div className="container">
             <h2>Products </h2>
-            
+            <Link to="/users" className="btn btn-primary">Users</Link>
         </div>;
     }
 }
 
-export default AddProdProductListuct;
+export default ProductList;

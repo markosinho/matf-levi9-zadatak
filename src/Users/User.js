@@ -2,7 +2,7 @@ import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default (user, userId) => {
+const User = (user, userId) => {
 
     return <div className="card"
         style={{width: '30%', marginBottom: '20px', marginLeft: '3%' }}
@@ -21,3 +21,5 @@ export default (user, userId) => {
             </div>
     </div>
 }
+
+export default User;

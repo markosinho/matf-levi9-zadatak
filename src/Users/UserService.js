@@ -4,10 +4,6 @@ import axios from 'axios';
 const hostUrl = config.webshop.url;
 
 class UserService {
-    constructor() {
-
-    }
-
     static async fetchUsers() {
         try {
             const users = await axios.get(hostUrl + '/users/all/');

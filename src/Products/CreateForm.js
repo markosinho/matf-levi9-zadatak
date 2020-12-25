@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-export default () => {
+const CreateForm = () => {
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState(0);
 
@@ -33,3 +33,6 @@ export default () => {
         <button className="btn btn-primary">Submit</button>
     </div>;
 };
+
+
+export default CreateForm;

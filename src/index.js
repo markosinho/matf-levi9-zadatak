@@ -5,9 +5,9 @@ import App from './App/App';
 import reportWebVitals from './reportWebVitals';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCheckSquare, faCoffee, faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faCheckSquare, faCoffee, faUser, faUsers, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faCheckSquare, faCoffee, faUser, faUsers);
+library.add(faCheckSquare, faCoffee, faUser, faUsers, faTrash );
 
 ReactDOM.render(
   <App />,

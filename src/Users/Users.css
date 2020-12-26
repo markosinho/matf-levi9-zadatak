@@ -2,3 +2,40 @@
     border-right: 1px solid #e4e4e4;
     padding-right: 10%;
 }
+
+.topMargin {
+    margin-top: 20px;
+}
+
+.cardCustom {
+    width: 100%;
+    margin: 2% 2% 2% 2%;
+}
+
+.userControl {
+    width: 5%;
+    margin-right: 1%;
+}
+
+.userHeaderInfo {
+    width: 50%;
+}
+
+.userHeaderControl {
+    width: 50%;
+    text-align: right;
+    color: #921800;
+}
+
+.userIconCustom {
+    margin-right: 10px;
+}
+
+.deleteIconCustom {
+    cursor: pointer;
+}
+
+.createFormWrapper {
+    margin-left: 2%;
+    margin-right: 2%;
+}

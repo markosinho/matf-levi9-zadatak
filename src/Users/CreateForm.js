@@ -80,7 +80,7 @@ const formFields = {
 
 const CreateForm = (props) => {
 
-    const formHandlers = props.formParentHandlers;
+    const formHandlers = props.userListHandlers;
 
     const [email, setEmail] = useState('');
     const [userName, setUsername] = useState('');
@@ -94,6 +94,8 @@ const CreateForm = (props) => {
         setPassword('');
         setFirstName('');
         setLastName('');
+        const formInputNames = Object.keys(formFields);
+        formInputNames.forEach(inputName => formFields[inputName].valid = false);
     }
 
     const checkInput = (inputName, value) => {
@@ -121,7 +123,7 @@ const CreateForm = (props) => {
         const userType = 'CUSTOMER';
 
         if (!validateForm()) {
-            formHandlers.showToaster(false);
+            formHandlers.showToaster(false, 'User not created');
             return;
         }
 
@@ -134,11 +136,11 @@ const CreateForm = (props) => {
         try {
             const response = await axios.post(url, postData);
             console.log(response);
-            formHandlers.showToaster(true);
+            formHandlers.showToaster(true, `User ${userName} created`);
             resetState();
         } catch (err) {
             console.error(err.stack);
-            formHandlers.showToaster(false);
+            formHandlers.showToaster(false, `User not created`);
         }
 
         // Next line is called from parrent component
@@ -168,7 +170,7 @@ const CreateForm = (props) => {
                     className="form-control" 
                     ref={userNameRef}/>
             </div>
-            <span ref={userNameRefErr} hidden={true} className='text-danger'>Username must not be empty</span>
+            <span ref={userNameRefErr} hidden={true} className='text-danger'>Username invalid</span>
 
             <div className="form-group">
                 <label>Password</label><br />
@@ -190,7 +192,7 @@ const CreateForm = (props) => {
                     className="form-control"
                     ref={firstNameRef} />
             </div>
-            <span ref={firstNameRefErr} hidden={true} className='text-danger'>First name must not be empty</span>
+            <span ref={firstNameRefErr} hidden={true} className='text-danger'>First name invalid</span>
 
             <div className="form-group">
                 <label>Last name</label><br />
@@ -201,7 +203,7 @@ const CreateForm = (props) => {
                     className="form-control"
                     ref={lastNameRef} />
             </div>
-            <span ref={lastNameRefErr} hidden={true} className='text-danger'>Last name must not be empty</span>
+            <span ref={lastNameRefErr} hidden={true} className='text-danger'>Last name invalid</span>
 
             <br />
             <button className="btn btn-primary">Submit</button>

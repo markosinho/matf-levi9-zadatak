@@ -10,43 +10,27 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 function App() {
+
+  // TODO: Fetch permissions
+  const permissions = {
+    canSeeProducts: true,
+    canSeeUsers: true
+  }
+
+  // TODO: Set routes in array
+
   return (
     <div >
       <Router>
         <header>
-          <Navigation />
+          <Navigation permissions={permissions} />
         </header>
 
         <Switch>
           <Route exact path="/" />
           <Route exact path="/users" component={UserList} />
-          <Route path="/products" component={ProductList} />
-          
+          <Route path="/products" component={ProductList} />          
         </Switch>
-
-
-
-        
-
-
-
-        {/* <Product /> */}
-
-        {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-
       </Router>
     </div>
   );

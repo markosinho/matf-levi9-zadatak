@@ -10,6 +10,7 @@ import User from './User';
 const UserList = () => {
 
     const [users, setUsers] = useState([]);
+    const [alertMessage, setAlertMessage] = useState('');
 
     const alertSuccessRef = React.createRef();
     const alertFailureRef = React.createRef();
@@ -19,15 +20,17 @@ const UserList = () => {
         setUsers(data);
     }
 
-    const showToaster = (success) => {
+    const showToaster = (success, message) => {
         const alertSuccess = alertSuccessRef.current;
         const alertFailure = alertFailureRef.current;
         if (success) {
+            setAlertMessage(message);
             alertSuccess.hidden = false;
             setTimeout(() => {
                 alertSuccess.hidden = true;
             }, 3000)
         } else {
+            setAlertMessage(message);
             alertFailure.hidden = false;
             setTimeout(() => {
                 alertFailure.hidden = true;
@@ -39,32 +42,40 @@ const UserList = () => {
         showUsers();
     }, [])
 
-    return <div className="container" style={{marginTop: '20px'}}>
+    return <div className="container topMargin">
 
         <div className="row">
 
-            <div className="col-md-4">
-                <CreateForm formParentHandlers={{mare: 10, showUsers: showUsers, showToaster: showToaster}}/>
+            <div className="col-md-3 createFormWrapper">
+                <CreateForm userListHandlers={{showUsers: showUsers, showToaster: showToaster}}/>
+
+                <div className="topMargin">
+                    <Alert key='allertCreated' variant="success" hidden={true} id="successAlert" ref={alertSuccessRef}>
+                        {alertMessage}
+                    </Alert>
+
+                    <Alert key='allertNotCreated' variant="danger" hidden={true} id="failureAlert" ref={alertFailureRef}>
+                        {alertMessage}
+                    </Alert>
+                </div>
             </div>
+
+            
+            
 
             <div className="col-md-8">
                 <div className="d-flex flex-row flex-wrap align-items-center" >
                     {
                         users.map(user => {
-                            return <User {...user} key={user.userName}/>
+                            return <User user={{...user}} userListHandlers={{showUsers: showUsers, showToaster: showToaster}}
+                                key={user.userName}/>
                         })
                     }
                 </div>
             </div>
         </div>
         <hr />
-        <Alert key='allertCreated' variant="success" hidden={true} id="successAlert" ref={alertSuccessRef}>
-            User created
-        </Alert>
-
-        <Alert key='allertNotCreated' variant="danger" hidden={true} id="failureAlert" ref={alertFailureRef}>
-            User not created
-        </Alert>
+        
     </div>
 }
 

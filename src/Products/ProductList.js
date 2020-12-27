@@ -13,6 +13,7 @@ import config from '../config.json';
 
 const ProductList = (props) => {
 
+    const page = props.page;
     const canManage = props.canManage;
     const canSee = props.canSee;
     const [products, setProducts] = useState([]);
@@ -40,7 +41,7 @@ const ProductList = (props) => {
         return [];
     }
 
-    const showProducts = async () => {
+    async function showProducts() {
         setLoading(true);
         const productsResponse = await getAllProducts();
         setProducts(productsResponse);
@@ -54,7 +55,7 @@ const ProductList = (props) => {
     return <div className="container topMargin productList">
         <div>
             {
-                (canManage || canSee) && <CreateForm productListHandlers={{showProducts: showProducts}}/>
+                (canManage || canSee) && <CreateForm productListHandlers={{showProducts: showProducts}} key={page}/>
             }
             <hr />
             <h2>Products ({products.length})</h2>
@@ -66,7 +67,7 @@ const ProductList = (props) => {
                 {
                     products.map(product => {
                         return <Product product={{ ...product }} productListHandlers={{showProducts: showProducts, canDelete: canManage}}
-                            key={product.id} />
+                            key={product.codename} />
                     })
                 }
             </div>

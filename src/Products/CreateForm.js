@@ -20,10 +20,10 @@ const CreateForm = (props) => {
         console.log(newProduct);
         try {
             axios.post(`${config.webshop.url}/product`, newProduct)
-            showProducts();
         } catch (err) {
             console.log(err);
         }
+        showProducts();
     };
 
     return <div className="container">

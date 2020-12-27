@@ -35,11 +35,11 @@ function App() {
         <Switch>
           {/* <Route exact path="/" component={ProductList(permissions.canSeeProducts)}/> */}
           <Route exact path="/" render={() => <ProductList canSee={false}
-                                            canManage={false} />} />
+                                            canManage={false} page='home'/>} />
 
 
           <Route path="/products" render={() => <ProductList canSee={permissions.canSeeProducts}
-                                            canManage={permissions.canManageProducts} />} />
+                                            canManage={permissions.canManageProducts} page='products'/>} />
           <Route exact path="/users" component={UserList} />
         </Switch>
       </Router>

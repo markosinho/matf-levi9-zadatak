@@ -1,0 +1,15 @@
+.cardProduct {
+    width: 100%;
+    margin: 1% 5% 1% 5%;
+}
+
+.cardProductHeader {
+    background-image: linear-gradient(rgb(116, 172, 224), rgb(83, 146, 204));
+    color: white;
+}
+
+.cardProductFooter {
+    /*background-color: rgb(99, 147, 192);*/
+
+    background-image: linear-gradient(rgb(236, 236, 236), rgb(240, 240, 240));
+}

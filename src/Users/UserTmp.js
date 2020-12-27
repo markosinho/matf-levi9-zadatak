@@ -19,6 +19,7 @@ const userTypes = {
 }
 
 const User = (props) => {
+    
 
     const user = props.user;
     const userHandlers = props.userListHandlers;
@@ -56,34 +57,28 @@ const User = (props) => {
                 </div>
             </div>
             <div className="card-body">
-                <strong>email: </strong>{user.email}
-                
-                {/* Registered: */}
-
-                {/* TODO: Extract to another component */}
+                {user.email}
                 <div className="d-flex flex-row flex-wrap userBodyItem">
-                    <input type="radio" className="btn-check" name={'options-' + user.userName} id={"customer-"  + user.userName}
+                    <input type="radio" className="btn-check" name={`options-${user.userName}`} id={`customer-${user.userName}`}
                         autoComplete="off"
                         checked = { user.userType === userTypes.customer.code ? true : false }
                         onChange={e => {
                             updateUserType(userTypes.customer.code);
                         }} />
-                    <label className="btn-sm btn-outline-primary userTypeButton" htmlFor={"customer-"  + user.userName}> 
+                    <label className="btn-sm btn-outline-primary userTypeButton" htmlFor={"customer"  + user.userName}> 
                         {userTypes.customer.text}
                     </label>
 
-                    <input type="radio" className="btn-check" name={'options-' + user.userName} id={"salesAdmin-" + user.userName}
+                    <input type="radio" className="btn-check" name={`options-${user.userName}`} id={`salesAdmin-${user.userName}`}
                         autoComplete="off" 
                         checked = { user.userType === userTypes.salesAdmin.code ? true : false }
                         onChange={e => {
                             updateUserType(userTypes.salesAdmin.code);
                         }} />
-                    <label className="btn-sm btn-outline-primary userTypeButton" htmlFor={"salesAdmin-" + user.userName}>
+                    <label className="btn-sm btn-outline-primary userTypeButton" htmlFor={"salesAdmin" + user.userName}>
                         {userTypes.salesAdmin.text}
                     </label>
                 </div>
-
-
             </div>
     </div>
 }

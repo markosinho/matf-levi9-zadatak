@@ -1,5 +1,8 @@
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import '../Shared/Shared.css';
 import './Navigation.css';
 // import Form from 'react-bootstrap/Form';
 // import Button from 'react-bootstrap/Button';
@@ -17,9 +20,15 @@ const CustomNavigation = (props) => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/products" hidden={!permissions.canSeeProducts}>Products</Nav.Link>
-                    <Nav.Link href="/users" hidden={!permissions.canSeeUsers}>Users</Nav.Link>
+                    <Nav.Link href="/">
+                        <FontAwesomeIcon icon={["fas", "home"]} className="iconMargin" />Home
+                    </Nav.Link>
+                    <Nav.Link href="/products" hidden={!permissions.canSeeProducts}>
+                        <FontAwesomeIcon icon={["fas", "box"]} className="iconMargin" />Products
+                        </Nav.Link>
+                    <Nav.Link href="/users" hidden={!permissions.canSeeUsers}>
+                        <FontAwesomeIcon icon={["fas", "user"]} className="iconMargin" />Users
+                    </Nav.Link>
                     {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

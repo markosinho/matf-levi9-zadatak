@@ -5,9 +5,11 @@ import App from './App/App';
 import reportWebVitals from './reportWebVitals';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCheckSquare, faCoffee, faUser, faUsers, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCheckSquare, faCoffee, faUser, faUsers, 
+  faTrash, faEuroSign, faBoxes, faBox, faHome } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faCheckSquare, faCoffee, faUser, faUsers, faTrash );
+library.add(faCheckSquare, faCoffee, faUser, faUsers, 
+  faTrash, faEuroSign, faHome, faBox, faBoxes);
 
 ReactDOM.render(
   <App />,

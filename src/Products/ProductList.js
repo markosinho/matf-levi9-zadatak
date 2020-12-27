@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
+
 // import User from '../Users/User';
 // import CreateForm from './CreateForm';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
-class ProductList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            currentTime: this.getCurrentTime(),
-            users: []
-        }
-    }
+import Product from '../Products/Product';
+import '../Shared/Shared.css'
 
+const ProductList = (props) => {
+
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     // Method that gets all products
 
@@ -22,36 +22,51 @@ class ProductList extends React.Component {
 
     // Method for updating product
 
-
-    getAllProducts = async () => {
+    /**
+     * Simulation of getting all products
+     */
+    const getAllProducts = async () => {
         const url = 'https://gorest.co.in/public-api/users';
         try {
-            const users = await axios.get(url);
-            return users.data?.data;
+            const products = await axios.get(url);
+            return products.data?.data;
         } catch (err) {
             console.error(err);
         }
         return [];
     }
 
-    handleCurrentTimeClick = async () => {
-        const allUsers = await this.getAllProducts();
-        this.setState({
-            currentTime: this.getCurrentTime(),
-            users: allUsers 
-        });
-    }
+    useEffect(() => {
+        const showProducts = async () => {
+            setLoading(true);
+            const productsResponse = await getAllProducts();
+            setProducts(productsResponse.map(product => {
+                const price = Math.floor((Math.random() * 100000) % 1000);
+                return {...product, price}
+            }));
+            setLoading(false);
+        }
 
-    getCurrentTime = () => {
-        return new Date().getTime();
-    }
+        showProducts();
+    }, []);
 
-    render() {
-        return <div className="container">
+    return <div className="container topMargin">
             <h2>Products </h2>
-            <Link to="/users" className="btn btn-primary">Users</Link>
-        </div>;
-    }
+            
+            <span hidden={!loading}>Loading...</span>
+            
+            {/* <div className="col-md-8"> */}
+                <div className="d-flex flex-row flex-wrap align-items-center" >
+                    {
+                        products.map(product => {
+                            return <Product product={{...product}}
+                                key={product.id}/>
+                        })
+                    }
+                </div>
+            {/* </div> */}
+
+    </div>
 }
 
 export default ProductList;

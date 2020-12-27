@@ -1,0 +1,20 @@
+
+
+
+.topMargin {
+    margin-top: 20px;
+}
+
+.deleteIconCustom {
+    cursor: pointer;
+}
+
+.createFormWrapper {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.iconMargin {
+    margin-left: 5px;
+    margin-right: 10px;
+}

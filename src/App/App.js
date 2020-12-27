@@ -1,3 +1,5 @@
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 
 import './App.css';
 // import Link from 'react';
@@ -6,7 +8,10 @@ import './App.css';
 import Navigation from '../Header/Navigation';
 import UserList from '../Users/UserList';
 import ProductList from '../Products/ProductList';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+
+import '../Shared/Shared.css';
+
 
 
 function App() {

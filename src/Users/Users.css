@@ -3,11 +3,7 @@
     padding-right: 10%;
 }
 
-.topMargin {
-    margin-top: 20px;
-}
-
-.cardCustom {
+.cardUser {
     width: 100%;
     margin: 2% 2% 2% 2%;
 }
@@ -31,11 +27,13 @@
     margin-right: 10px;
 }
 
-.deleteIconCustom {
+.userTypeButton {
+    width: 20%;
+    margin-right: 2%;
+    border: 1px solid;
     cursor: pointer;
 }
 
-.createFormWrapper {
-    margin-left: 2%;
-    margin-right: 2%;
+.userBodyItem {
+    margin-top: 5px;
 }

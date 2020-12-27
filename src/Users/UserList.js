@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Alert } from 'react-bootstrap';
 
 import CreateForm from './CreateForm';
@@ -11,6 +11,9 @@ const UserList = () => {
 
     const [users, setUsers] = useState([]);
     const [alertMessage, setAlertMessage] = useState('');
+    
+    const [strongFlag, setStrongFlag] = useState(true);
+    const [userNameMessage, setUserNameMessage] = useState('');
 
     const alertSuccessRef = React.createRef();
     const alertFailureRef = React.createRef();
@@ -20,9 +23,17 @@ const UserList = () => {
         setUsers(data);
     }
 
-    const showToaster = (success, message) => {
+    useEffect(() => {
+        showUsers();
+    }, []);
+
+    const showToaster = (success, message, userName) => {
         const alertSuccess = alertSuccessRef.current;
         const alertFailure = alertFailureRef.current;
+
+        setUserNameMessage(userName);
+        setStrongFlag(false);
+
         if (success) {
             setAlertMessage(message);
             alertSuccess.hidden = false;
@@ -31,16 +42,15 @@ const UserList = () => {
             }, 3000)
         } else {
             setAlertMessage(message);
+            console.log(alertFailure);
             alertFailure.hidden = false;
             setTimeout(() => {
+                console.log(alertFailure);
                 alertFailure.hidden = true;
             }, 3000)
         }
     }
     
-    useEffect(() => {
-        showUsers();
-    }, [])
 
     return <div className="container topMargin">
 
@@ -51,11 +61,11 @@ const UserList = () => {
 
                 <div className="topMargin">
                     <Alert key='allertCreated' variant="success" hidden={true} id="successAlert" ref={alertSuccessRef}>
-                        {alertMessage}
+                        User <strong hidden={strongFlag}> {userNameMessage} </strong> {alertMessage}
                     </Alert>
 
                     <Alert key='allertNotCreated' variant="danger" hidden={true} id="failureAlert" ref={alertFailureRef}>
-                        {alertMessage}
+                        User <strong hidden={strongFlag}> {userNameMessage} </strong> {alertMessage}
                     </Alert>
                 </div>
             </div>

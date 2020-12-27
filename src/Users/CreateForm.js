@@ -3,6 +3,7 @@ import axios from 'axios';
 import validator from 'validator';
 
 import config from '../config.json';
+import '../Shared/Shared.css';
 import './Users.css';
 
 
@@ -123,7 +124,7 @@ const CreateForm = (props) => {
         const userType = 'CUSTOMER';
 
         if (!validateForm()) {
-            formHandlers.showToaster(false, 'User not created');
+            formHandlers.showToaster(false, 'not created', userName);
             return;
         }
 
@@ -136,11 +137,11 @@ const CreateForm = (props) => {
         try {
             const response = await axios.post(url, postData);
             console.log(response);
-            formHandlers.showToaster(true, `User ${userName} created`);
+            formHandlers.showToaster(true, 'created', userName);
             resetState();
         } catch (err) {
             console.error(err.stack);
-            formHandlers.showToaster(false, `User not created`);
+            formHandlers.showToaster(false, 'not created', userName);
         }
 
         // Next line is called from parrent component
@@ -159,7 +160,7 @@ const CreateForm = (props) => {
                     className="form-control"
                     ref={emailRef} />
             </div>
-            <span ref={emailRefErr} hidden={true} className='text-danger'>Invalid email</span>
+            <span ref={emailRefErr} hidden={true} className='text-danger'>Email invalid</span>
 
             <div className="form-group">
                 <label>User name</label><br />

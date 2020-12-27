@@ -15,6 +15,7 @@ const Product = (props) => {
     const categoryText = Object.keys(categories).map(key => key.toLowerCase());
 
     const showProducts = props.productListHandlers.showProducts;
+    const canDelete = props.productListHandlers.canDelete;
     const product = props.product;
 
     const deleteProduct = async () => {
@@ -36,7 +37,7 @@ const Product = (props) => {
                 <FontAwesomeIcon icon={["fas", "box"]} className="iconMargin" />{product.title}
             </div>
             <div className="headerControl">
-                <FontAwesomeIcon icon={["fas", "trash"]} onClick={deleteProduct} className="deleteIconCustom" />
+                <FontAwesomeIcon icon={["fas", "trash"]} onClick={deleteProduct} className="deleteIconCustom" hidden={!canDelete}/>
             </div>
         </div>
         <div className="card-body">

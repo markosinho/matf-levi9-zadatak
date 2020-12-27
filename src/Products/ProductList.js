@@ -13,6 +13,8 @@ import config from '../config.json';
 
 const ProductList = (props) => {
 
+    const canManage = props.canManage;
+    const canSee = props.canSee;
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -41,10 +43,7 @@ const ProductList = (props) => {
     const showProducts = async () => {
         setLoading(true);
         const productsResponse = await getAllProducts();
-        setProducts(productsResponse.map(product => {
-            const price = Math.floor((Math.random() * 100000) % 1000);
-            return { ...product, price }
-        }));
+        setProducts(productsResponse);
         setLoading(false);
     }
 
@@ -54,7 +53,9 @@ const ProductList = (props) => {
 
     return <div className="container topMargin productList">
         <div>
-            <CreateForm productListHandlers={{showProducts: showProducts}} />
+            {
+                (canManage || canSee) && <CreateForm productListHandlers={{showProducts: showProducts}}/>
+            }
             <hr />
             <h2>Products ({products.length})</h2>
 
@@ -64,7 +65,7 @@ const ProductList = (props) => {
             <div className="d-flex flex-row flex-wrap align-items-center" >
                 {
                     products.map(product => {
-                        return <Product product={{ ...product }} productListHandlers={{showProducts: showProducts}}
+                        return <Product product={{ ...product }} productListHandlers={{showProducts: showProducts, canDelete: canManage}}
                             key={product.id} />
                     })
                 }

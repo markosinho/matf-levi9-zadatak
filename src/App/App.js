@@ -19,7 +19,8 @@ function App() {
   // TODO: Fetch permissions
   const permissions = {
     canSeeProducts: true,
-    canSeeUsers: true
+    canManageProducts: true,
+    canManageUsers: true
   }
 
   // TODO: Set routes in array
@@ -32,9 +33,14 @@ function App() {
         </header>
 
         <Switch>
-          <Route exact path="/" />
+          {/* <Route exact path="/" component={ProductList(permissions.canSeeProducts)}/> */}
+          <Route exact path="/" render={() => <ProductList canSee={false}
+                                            canManage={false} />} />
+
+
+          <Route path="/products" render={() => <ProductList canSee={permissions.canSeeProducts}
+                                            canManage={permissions.canManageProducts} />} />
           <Route exact path="/users" component={UserList} />
-          <Route path="/products" component={ProductList} />          
         </Switch>
       </Router>
     </div>

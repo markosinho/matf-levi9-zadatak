@@ -23,11 +23,15 @@ const CustomNavigation = (props) => {
                     <Nav.Link href="/">
                         <FontAwesomeIcon icon={["fas", "home"]} className="iconMargin" />Home
                     </Nav.Link>
-                    <Nav.Link href="/products" hidden={!permissions.canSeeProducts}>
+                    <Nav.Link href="/products" hidden={!permissions.canManageProducts}>
                         <FontAwesomeIcon icon={["fas", "box"]} className="iconMargin" />Products
                         </Nav.Link>
-                    <Nav.Link href="/users" hidden={!permissions.canSeeUsers}>
-                        <FontAwesomeIcon icon={["fas", "user"]} className="iconMargin" />Users
+                    <Nav.Link href="/users" hidden={!permissions.canManageUsers}>
+                        <FontAwesomeIcon icon={["fas", "users"]} className="iconMargin" />Users
+                    </Nav.Link>
+
+                    <Nav.Link href="/login"  className="rightPosition">
+                        <FontAwesomeIcon icon={["fas", "user"]} className="iconMargin" />Login
                     </Nav.Link>
                     {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

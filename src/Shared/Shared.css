@@ -24,3 +24,7 @@
     text-align: right;
     color: #921800;
 }
+
+.rightPosition {
+    float: right;
+}

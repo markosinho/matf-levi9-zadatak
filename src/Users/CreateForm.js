@@ -6,13 +6,19 @@ import config from '../config.json';
 import '../Shared/Shared.css';
 import './Users.css';
 
-
 const formFieldsNames = {
     email: 'email',
     userName: 'userName',
     password: 'password',
     firstName: 'firstName',
     lastName: 'lastName'
+}
+
+
+const isSupportedLanguage = (str) => {
+    return validator.isAlpha(str, 'sr-RS')
+    || validator.isAlpha(str, 'sr-RS@latin')
+    || validator.isAlpha(str, 'en-US');
 }
 
 const formCheckers = {
@@ -28,11 +34,11 @@ const formCheckers = {
     },
     firstName: (value) => {
         return !validator.isEmpty(value) &&
-            validator.isAlpha(value);
+            isSupportedLanguage(value);
     },
     lastName: (value) => {
         return !validator.isEmpty(value) &&
-            validator.isAlpha(value);
+            isSupportedLanguage(value);
     }
 }
 

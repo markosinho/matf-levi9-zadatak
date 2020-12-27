@@ -23,6 +23,8 @@ const User = (props) => {
     const user = props.user;
     const userHandlers = props.userListHandlers;
 
+    const isAdmin = user.userType === userTypes.admin.code;
+
     const deleteUser = async () => {
         try {
             const url = `${config.webshop.url}/user/${user.userName}`;
@@ -46,45 +48,54 @@ const User = (props) => {
     }
 
     return <div className="card cardUser"
-                key={user.userName}>
-            <div className="card-header d-flex flex-row flex-wrap">
-                <div className="userHeaderInfo">
-                    <FontAwesomeIcon icon={["fas", "user"]} className="userIconCustom"/>{user.firstName} {user.lastName} 
-                </div>
-                <div className="userHeaderControl">
-                    <FontAwesomeIcon icon={["fas", "trash"]} onClick={deleteUser} className="deleteIconCustom" />
-                </div>
+        key={user.userName}>
+        <div className="card-header d-flex flex-row flex-wrap">
+            <div className="userHeaderInfo">
+                <FontAwesomeIcon icon={["fas", "user"]} className="userIconCustom" />{user.firstName} {user.lastName}
             </div>
-            <div className="card-body">
-                <strong>email: </strong>{user.email}
-                
-                {/* Registered: */}
-
-                {/* TODO: Extract to another component */}
-                <div className="d-flex flex-row flex-wrap userBodyItem">
-                    <input type="radio" className="btn-check" name={'options-' + user.userName} id={"customer-"  + user.userName}
-                        autoComplete="off"
-                        checked = { user.userType === userTypes.customer.code ? true : false }
-                        onChange={e => {
-                            updateUserType(userTypes.customer.code);
-                        }} />
-                    <label className="btn-sm btn-outline-primary userTypeButton" htmlFor={"customer-"  + user.userName}> 
-                        {userTypes.customer.text}
-                    </label>
-
-                    <input type="radio" className="btn-check" name={'options-' + user.userName} id={"salesAdmin-" + user.userName}
-                        autoComplete="off" 
-                        checked = { user.userType === userTypes.salesAdmin.code ? true : false }
-                        onChange={e => {
-                            updateUserType(userTypes.salesAdmin.code);
-                        }} />
-                    <label className="btn-sm btn-outline-primary userTypeButton" htmlFor={"salesAdmin-" + user.userName}>
-                        {userTypes.salesAdmin.text}
-                    </label>
-                </div>
-
-
+            <div className="headerControl" hidden={isAdmin}>
+                <FontAwesomeIcon icon={["fas", "trash"]} onClick={deleteUser} className="deleteIconCustom" />
             </div>
+        </div>
+        <div className="card-body">
+            <strong>email: </strong>{user.email} <br />
+            <strong>username: </strong>{user.userName} <br />
+            {/* <strong>registered: </strong>{user.registrationDate} <br /><hr /> */}
+            <hr />
+
+            {/* TODO: Extract to another component */}
+            <div className="d-flex flex-row flex-wrap userBodyItem">
+                <input type="radio" className="btn-check" name={'options-' + user.userName} id={"customer-" + user.userName}
+                    hidden={isAdmin}
+                    autoComplete="off"
+                    checked={user.userType === userTypes.customer.code ? true : false}
+                    onChange={e => {
+                        updateUserType(userTypes.customer.code);
+                    }} />
+                <label className="btn-sm btn-outline-primary userTypeButton"
+                    htmlFor={"customer-" + user.userName}
+                    hidden={isAdmin}>
+                    {userTypes.customer.text}
+                </label>
+
+                <input type="radio" className="btn-check" name={'options-' + user.userName} id={"salesAdmin-" + user.userName}
+                    autoComplete="off"
+                    checked={user.userType === userTypes.salesAdmin.code ? true : false}
+                    onChange={e => {
+                        updateUserType(userTypes.salesAdmin.code);
+                    }} />
+                <label className="btn-sm btn-outline-primary userTypeButton"
+                    htmlFor={"salesAdmin-" + user.userName}
+                    hidden={isAdmin}>
+                    {userTypes.salesAdmin.text}
+                </label>
+
+                <label className="btn-sm btn-outline-success userTypeButton disabled"
+                    hidden={!isAdmin}>
+                    {userTypes.admin.text}
+                </label>
+            </div>
+        </div>
     </div>
 }
 

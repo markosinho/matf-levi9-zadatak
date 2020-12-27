@@ -1,6 +1,11 @@
+.productList {
+    width: 50%;
+}
+
 .cardProduct {
-    width: 100%;
-    margin: 1% 5% 1% 5%;
+    width: 90%;
+    margin: auto;
+    margin-top: 2%;
 }
 
 .cardProductHeader {
